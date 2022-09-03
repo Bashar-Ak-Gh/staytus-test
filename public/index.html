@@ -11,6 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
+        darkMode: "class",
         theme: {
           colors: {
             grey: "#717173",
@@ -22,7 +23,7 @@
             white: "#fbfbfb",
             yellow: "#e9c555",
             black: "#000000",
-            red: '#ff0000'
+            red: "#ff0000",
           },
           fontFamily: {
             sans: ["Roboto"],
@@ -36,14 +37,21 @@
       };
     </script>
     <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="styles.css" />
     <title>Document</title>
   </head>
-  <body class="roboto bg-black">
+  <body class="roboto bg-light-grey dark:bg-black">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="index.js" type="module"></script>
+    <label class="text-black dark:text-white">
+      <input type="radio" value="black" name="theme-switch" />
+      Dark background
+    </label>
+    <label class="text-black dark:text-white">
+      <input type="radio" value="white" name="theme-switch" />
+      Light background
+    </label>
     <div id="content" class="container mx-auto text-white">
-      Loading planets...
+      <p class="text-black dark:text-white">Loading planets ...</p>
     </div>
   </body>
 </html>

@@ -1,7 +1,23 @@
 import { State } from "./state.js";
-import { getPlanets } from "./apis.js";
+import { getReptilePlanets } from "./apis.js";
 import { generatePlanetsCards } from "./planet-card.js";
 import { generateErrorElement } from "./error-element.js";
+
+const radios = document.querySelectorAll('input[name="theme-switch"]');
+radios.forEach((radio) => {
+  if (radio.value === "black") {
+    // default bg is black
+    document.documentElement.classList.add("dark");
+    radio.checked = true;
+  }
+  radio.addEventListener("click", function (event) {
+    if (event.target.value === "white") {
+      document.documentElement.classList.remove("dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
+  });
+});
 
 function render(htmlCode) {
   const planets = document.getElementById("content");
@@ -28,7 +44,7 @@ state.subscribe("error", function (data) {
   render(htmlCode);
 });
 
-await getPlanets()
+await getReptilePlanets()
   .then((planets) => {
     state.dispatch("setData", planets);
   })
